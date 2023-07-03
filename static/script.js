@@ -20,7 +20,7 @@ function displayLinks(links, currentPage) {
     var resultsContainer = $('#results');
     resultsContainer.empty();
 
-    if (Object.keys(links).length === 0) {
+    if (links.length === 0) {
         var noResultsHeading = $('<h1 class="no-results-heading">No results found.</h1>');
         resultsContainer.append(noResultsHeading);
     }
@@ -33,8 +33,11 @@ function displayLinks(links, currentPage) {
 
         var count = 0;
 
-        $.each(links, function(title, url) {
+        $.each(links, function(index, link) {
             if (count >= startIndex && count < endIndex) {
+                var title = link[0];
+                var url = link[1];
+
                 var card = $('<div class="card"></div>'); 
 
                 var header = $('<div class="header"></div>');
@@ -54,7 +57,7 @@ function displayLinks(links, currentPage) {
         });
 
        
-        var totalPages = Math.ceil(Object.keys(links).length / 6); 
+        var totalPages = Math.ceil(links.length / 6); 
         if (totalPages > 1) {
             var pagination = $('<div class="pagination"></div>');
             
