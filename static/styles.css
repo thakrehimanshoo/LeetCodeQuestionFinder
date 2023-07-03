@@ -186,7 +186,15 @@ body {
     justify-content: space-between;
 }
 
-
+  .pagination {
+        text-align: center;
+    }
+    
+    .prev-button,
+    .next-button {
+        font-size: 18px;
+        padding: 10px 20px;
+    }
 
 
 
