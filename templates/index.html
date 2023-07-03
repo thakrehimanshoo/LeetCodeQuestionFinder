@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Search Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="upper-container">
+        <img src="static/leetcode.png" alt="Heading Image" class="heading-image">
+    </div>
+    <div class="search-container">
+        <form id="search-form" action="{{ url_for('search') }}" method="post">
+
+            <input type="text" name="query" id="search-bar" class="search_bar"
+                placeholder="Which Question are you looking for?">
+            <br>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <div id="results"></div>
+    <!-- <div class="card">
+        <div class="header">
+            <span class="title">Beginner</span>
+        </div>
+
+        <button type="button" class="action">Get Started</button>
+    </div> -->
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
