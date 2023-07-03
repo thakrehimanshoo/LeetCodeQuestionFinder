@@ -60,10 +60,11 @@ def get_tf_dictionary(term):
     
     return tf_values
 def get_idf_value(term):
-    return math.log(len(documents)/(1+len(inverted_index[term])))
+    return math.log((1+len(documents))/(1+vocab[term]))
 
 def calculate_sorted_order_of_documents(query_terms):
-    pot_links={}
+    pot_links = []  
+
     potential_documents = {}
     for term in query_terms:
         try:
@@ -77,22 +78,25 @@ def calculate_sorted_order_of_documents(query_terms):
         except KeyError:
             continue
 
-
     for document in potential_documents:
         potential_documents[document] /= len(query_terms)
 
     potential_documents = dict(sorted(potential_documents.items(), key=lambda item: item[1], reverse=True))
+
     for document_index in potential_documents:
-        # print('Document:', documents[int(document_index)], 'Score:', potential_documents[document_index])
-        pot_links[orig_doc[int(document_index)]]=final_link[int(document_index)].strip()
+        title = orig_doc[int(document_index)]
+        url = final_link[int(document_index)].strip()
+        pot_links.append((title, url))  
+
     return pot_links
+
 
 def get_links(query):
     query_terms = [term.lower() for term in query.strip().split()]
     return calculate_sorted_order_of_documents(query_terms)
-    
+
 # query_string = input('Enter your query: ')
-# # query_terms = [term.lower() for term in query_string.strip().split()]
+# # query_s = [term.lower() for term in query_string.strip().split()]
 
 # print(get_links(query_string))
 
